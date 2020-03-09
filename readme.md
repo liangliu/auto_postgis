@@ -1,17 +1,16 @@
 
-- Directory (Apollo /home/czp): 
+- Directory : 
 ```
 data : wkt input in csv files
 result : postgis output 
 sql : postgis sql scripts 
-shell : shell scripts
 ```
 
 - Use
-You can get postgis functions output in directory result just need type this cmd :
+You can test postgis functions at (zilliz@192.168.2.36 -password zilliz):
 ```shell
-cd /home/czp/shell
-./test.sh
+sudo su
+psql -U postgres
+\i /home/czp/auto_postgis/sql/postgis.sql
 ```
 
-Note : You should run as user postgres.
