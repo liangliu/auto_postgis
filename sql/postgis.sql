@@ -47,6 +47,16 @@ select st_astext(st_union(st_envelope(geo1))) from t1;
 \o
 
 
+-- st_union_aggr test
+drop table if exists t1;
+create table t1 (geo1 geometry);
+copy t1 from '/home/czp/auto_postgis/data/union_aggr.csv' DELIMITER '|' csv header;
+select count(*) from t1;
+\o /home/czp/auto_postgis/result/union_aggr.out 
+select st_astext(st_union(geo1)) from t1;
+\o
+
+
 -- st_centroid test
 drop table if exists t1;
 create table t1 (geo1 geometry);
@@ -101,10 +111,20 @@ select count(*) from t1;
 select st_overlaps(geo1,geo2) from t1;
 \o
 
+
+-- st_Intersection test
+drop table if exists t1;
+create table t1 (geo1 geometry,geo2 geometry);
+copy t1 from '/home/czp/auto_postgis/data/intersection.csv' DELIMITER '|' csv header;
+select count(*) from t1;
+\o /home/czp/auto_postgis/result/intersection.out 
+select st_intersection(geo1,geo2) from t1;
+\o
+
 -- st_Crosses test
 drop table if exists t1;
 create table t1 (geo1 geometry,geo2 geometry);
-copy t1 from '/home/czp/auto_postgis/data/crossex.csv' DELIMITER '|' csv header;
+copy t1 from '/home/czp/auto_postgis/data/crosses.csv' DELIMITER '|' csv header;
 select count(*) from t1;
 \o /home/czp/auto_postgis/result/crosses.out 
 select st_crosses(geo1,geo2) from t1;
